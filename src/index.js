@@ -20,6 +20,7 @@ const defaultIgnores = [
  * @param {{
  *   tsconfigRootDir: string;
  *   ignores?: string[];
+ *   reactCompiler?: boolean;
  *   rules?: import('eslint').Linter.RulesRecord;
  *   typeCheck?: boolean;
  * }} options
@@ -28,6 +29,7 @@ const defaultIgnores = [
 export function frontendConfig({
   tsconfigRootDir,
   ignores = [],
+  reactCompiler = false,
   rules = {},
   typeCheck,
 }) {
@@ -101,7 +103,12 @@ export function frontendConfig({
         "@typescript-eslint/require-await": "off",
         "@typescript-eslint/unbound-method": "off",
         "simple-import-sort/exports": "error",
-        "simple-import-sort/imports": "error",
+        "simple-import-sort/imports": [
+          "error",
+          {
+            groups: [["^react", "^@?\\w"], ["^\\./", "^../"], ["^.+\\.s?css$"]],
+          },
+        ],
         "unused-imports/no-unused-imports": "error",
         "unused-imports/no-unused-vars": [
           "error",
@@ -120,7 +127,12 @@ export function frontendConfig({
         globals: globals.browser,
       },
       rules: {
+        "no-console": "error",
         "react-hooks/exhaustive-deps": "error",
+        "react-hooks/incompatible-library": reactCompiler ? "error" : "off",
+        "react-hooks/preserve-manual-memoization": reactCompiler
+          ? "error"
+          : "off",
       },
     },
 

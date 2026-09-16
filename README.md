@@ -32,6 +32,16 @@ export default frontendConfig({
 });
 ```
 
+React Compiler compatibility checks are disabled by default. Applications using the compiler can
+enable them explicitly:
+
+```js
+export default frontendConfig({
+  tsconfigRootDir: import.meta.dirname,
+  reactCompiler: true,
+});
+```
+
 Add a lint script:
 
 ```json
@@ -58,8 +68,9 @@ export default frontendConfig({
 
 The preset includes ESLint and TypeScript-ESLint recommended and stylistic rules, optional
 type-aware rules, React Hooks rules, Vite Fast Refresh validation, unused-import removal, and
-deterministic import sorting. Rules disabled as organization policy live in this package. Temporary
-migration warnings belong in the consuming application so they remain visible and removable.
+deterministic import sorting, and the shared `no-console` policy. Rules disabled as organization
+policy live in this package. Temporary migration warnings belong in the consuming application so
+they remain visible and removable.
 
 ## Development
 

@@ -1,6 +1,6 @@
 {
   "name": "@homeservefinance/eslint-config",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Shared ESLint flat configuration for HomeServe Finance frontend applications",
   "type": "module",
   "license": "UNLICENSED",

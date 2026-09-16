@@ -142,6 +142,15 @@ export function frontendConfig({
     },
 
     {
+      files: ["**/*.d.ts"],
+      rules: {
+        "@typescript-eslint/consistent-indexed-object-style": "off",
+        "@typescript-eslint/triple-slash-reference": "off",
+        "unused-imports/no-unused-vars": "off",
+      },
+    },
+
+    {
       files: ["**/*.{ts,tsx}"],
       rules,
     },

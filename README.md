@@ -15,10 +15,20 @@ npm install --save-dev @homeservefinance/eslint-config eslint typescript
 Create `eslint.config.mjs` in the consuming application:
 
 ```js
-import { frontendConfig } from '@homeservefinance/eslint-config';
+import { frontendConfig } from "@homeservefinance/eslint-config";
 
 export default frontendConfig({
   tsconfigRootDir: import.meta.dirname,
+});
+```
+
+Type-aware linting is enabled automatically in VS Code. It can be selected explicitly for a
+dedicated lint command or during a migration:
+
+```js
+export default frontendConfig({
+  tsconfigRootDir: import.meta.dirname,
+  typeCheck: true,
 });
 ```
 
@@ -27,7 +37,7 @@ Add a lint script:
 ```json
 {
   "scripts": {
-    "lint": "eslint . --report-unused-disable-directives --max-warnings 0"
+    "lint": "eslint . --report-unused-disable-directives"
   }
 }
 ```
@@ -39,14 +49,17 @@ Applications may add generated paths and narrowly scoped rule overrides:
 ```js
 export default frontendConfig({
   tsconfigRootDir: import.meta.dirname,
-  ignores: ['src/generated/**'],
+  ignores: ["src/generated/**"],
   rules: {
-    '@typescript-eslint/no-explicit-any': 'off',
+    "@typescript-eslint/no-explicit-any": "off",
   },
 });
 ```
 
-The preset includes ESLint recommended rules, type-aware TypeScript rules, React Hooks rules, Vite Fast Refresh validation, unused-import removal, and deterministic import sorting.
+The preset includes ESLint and TypeScript-ESLint recommended and stylistic rules, optional
+type-aware rules, React Hooks rules, Vite Fast Refresh validation, unused-import removal, and
+deterministic import sorting. Rules disabled as organization policy live in this package. Temporary
+migration warnings belong in the consuming application so they remain visible and removable.
 
 ## Development
 

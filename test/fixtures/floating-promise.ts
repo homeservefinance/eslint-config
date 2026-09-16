@@ -1,3 +1,5 @@
-async function fetchData(): Promise<void> {}
+function fetchData(): Promise<void> {
+  return Promise.resolve();
+}
 
 fetchData();

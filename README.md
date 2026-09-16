@@ -55,4 +55,4 @@ npm install
 npm test
 ```
 
-Package publishing is intentionally not automated yet. Registry configuration and release permissions must be agreed before enabling publication.
+The package is published to GitHub Packages through the manually triggered `Publish` workflow.

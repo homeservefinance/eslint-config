@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - node-version: 20
+            eslint-version: 9.39.4
+          - node-version: 22
+            eslint-version: 10.10.0
+          - node-version: 24
+            eslint-version: 10.10.0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci
+      - run: npm install --no-save eslint@${{ matrix.eslint-version }}
+      - run: npm test

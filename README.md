@@ -4,10 +4,11 @@ Shared ESLint flat configuration for HomeServe Finance TypeScript React frontend
 
 ## Installation
 
-Install the package together with its peer dependencies:
+Install the package from a git tag, together with its peer dependencies. The repository is
+public, so no token or registry configuration is needed in CI, Amplify or locally:
 
 ```sh
-npm install --save-dev @homeservefinance/eslint-config eslint typescript
+npm install --save-dev "git+https://github.com/homeservefinance/eslint-config.git#v0.5.0" eslint typescript
 ```
 
 ## Usage
@@ -79,4 +80,6 @@ npm install
 npm test
 ```
 
-The package is published to GitHub Packages through the manually triggered `Publish` workflow.
+Releases are git tags. Bump `version` in `package.json`, merge, then tag the merge commit
+(`git tag v0.6.0 && git push origin v0.6.0`) and update the `#vX.Y.Z` ref in consuming apps.
+Nothing is published to a registry.

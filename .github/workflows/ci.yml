@@ -30,3 +30,10 @@ jobs:
       - run: npm ci
       - run: npm install --no-save eslint@${{ matrix.eslint-version }}
       - run: npm test
+
+  # One stable check name for branch rulesets; the matrix job names change with every version bump.
+  ci:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ok
